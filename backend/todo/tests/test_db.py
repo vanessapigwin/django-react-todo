@@ -30,8 +30,7 @@ class TodoTest(TestCase):
 
     def test_update_status_completed(self):
         self.todo_task.task_status = 'completed'
-        self.todo_task.save(update_fields=['task_status'])
-        self.todo_task.updated_finished_date()
+        self.todo_task.save()
 
         saved_task = TableTodo.objects.first()
         self.assertIsNotNone(saved_task.finished_on, f'Date finished not found, actual: {saved_task.finished_on}')

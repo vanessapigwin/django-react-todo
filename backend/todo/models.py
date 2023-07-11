@@ -1,6 +1,6 @@
 # # Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
-from datetime import datetime
+from django.utils import timezone
 
 
 class TableTodo(models.Model):
@@ -26,9 +26,9 @@ class TableTodo(models.Model):
     def __str__(self):
         return self.task_name
 
-    def updated_finished_date(self):
+    def save(self):
         if self.task_status == 'completed':
-            self.finished_on = datetime.now()
+            self.finished_on = timezone.now()
         else:
             self.finished_on = None
-        self.save()
+        super(TableTodo, self).save()

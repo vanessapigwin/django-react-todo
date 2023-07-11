@@ -31,4 +31,4 @@ class TableTodo(models.Model):
             self.finished_on = datetime.now()
         else:
             self.finished_on = None
-            self.save()
+        self.save()

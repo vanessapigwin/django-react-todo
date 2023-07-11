@@ -1,4 +1,4 @@
-from models import TableTodo
+from todo.models import TableTodo
 from rest_framework import serializers
 
 

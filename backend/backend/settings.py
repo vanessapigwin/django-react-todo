@@ -25,6 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.environ.get("SECRET_KEY")
 DEBUG = int(os.environ.get("DEBUG", default=0))
 ALLOWED_HOSTS = os.environ.get("DJANGO_ALLOWED_HOSTS").split(" ")
+CORS_ALLOWED_ORIGIN_REGEXES = os.environ.get("CORS_ALLOWED_ORIGIN_REGEXES")
 
 # Application definition
 
@@ -87,6 +88,7 @@ DATABASES = {
     },
 }
 
+# added for quick unit testing, real tests to use postgres backend
 if 'test' in sys.argv or 'test_coverage' in sys.argv:
     DATABASES['default'] = {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -152,8 +154,3 @@ REST_FRAMEWORK = {
         'user': '1000/day'
     }
 }
-
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    r'.+cattoviz.com$',
-    r'^localhost:\d+'
-]
